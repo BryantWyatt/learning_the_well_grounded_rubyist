@@ -1,0 +1,44 @@
+##################################################################
+### Chapter 5: The default object (self), scope and visibility ###
+##################################################################
+
+### Understanding self, the current/default object
+
+# There will always be one and only one self
+# The definition of self will vary based on the context in which it is called
+# Top-level refers to the program code written outside of any class or module definition block
+# # Ruby will use self as a default receiver, meaning the message you send will be sent to self.
+
+# Example:
+talk #same as self.talk
+venue #same as self.venue
+capitalize #same as self.capitalize
+
+#The default to self as receiver for dotless method invocations allows you to streamline your code nicely in cases where one method makes use of another.
+
+###Resolving instance variables through self
+# Page 128
+
+# A simple rule governs instance variables and their resolution: every instance variable you'll ever see in Ruby program belongs to whatever object is the current object (self) at that point in the program
+
+###Class variable syntax, scope, visibility###
+# Page 138
+
+# Class variables begin with two at sign-for example , @@var. Despite their name, class variables aren't class scoped. Rather, they are class-hierchy scoped, except...some-times
+# At the simplest, the idea behind a class variable is that it provides a stroage mechanism that's shared between a class and instaces of that class and that's not visible to any other objects.
+
+###Evaluating the pros and cons of class variables###
+# Page 142
+# Note: There's an example that spans from page 138 - 144; Would recommend reviewing this to obtain a better sense of class variables
+
+# +Break down the dam between class objects and instances of that class
+# +Class variable isn't global but provides great visibility
+# -Class variables can be leaky
+
+# Private method
+# Page 145
+# Example of private methods#
+private :pour_flour, :add_egg, :stir_batter
+
+#Remainder of the chapter pertains to private and protected getters and setters would recommend reading
+# Page 147-148

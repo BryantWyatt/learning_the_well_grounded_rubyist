@@ -1,0 +1,99 @@
+#######################################
+### Organizing objects with classes ###
+#######################################
+
+###Methods###
+#Page 64
+
+#Methods of this kind, defined inside a class and intended for use by all instnaces of the class are called instance methods
+#Methods that you define for one particular object as in 'def ticket.price' are called singleton method
+
+###Instance Variables###
+#Page 67
+
+#Instance variables names always start with a single @ (at sign). This enables you to recognize an instance variable at a glance
+#Instance variables are only visible to the object to which they belong. (Being "visible to an object" has a technical definition having to do with the default object self, which you'll see more about in Chapter 5
+
+###The equal sign (=) in method names
+# Page 70
+
+#Setter methods Unleashed
+# Page 72
+
+# Setter methods can be abused see below
+# Ruby check syntaxs but not semantics
+
+#Example
+
+class Silly
+  def price=(x)
+    puts("The current time is #{Time.now}")
+  end
+end
+s = Silly.new
+s.price = 111.22
+
+###Formatting###
+# Page 71
+
+#The percent sign technique allows you to format strings using sprintf-like syntax. Ruby also has 'sprintf' method for formatting.
+
+###Summary of attr_* methods###
+
+# attr_reader - Example:
+# attr_reader :venue
+# Code:
+
+def venue
+  @venue
+end
+
+# attr_writer
+# attr_writer :price
+# Code:
+
+def price=(price)
+  @price = price
+end
+
+# attr_accessor
+# attr_accessor :price
+# Code:
+
+def price=(price)
+  @price = price
+end
+
+###Single Inheritance: One to many###
+
+# Despite what might be your first impression, Ruby's single inheritance doesn't restrict you: Ruby provides modules, which are bundles of programming functionality similar to classes (expect that they don't have instances), that you can graft on to your class's family tree to provide as many methods for your objects as you need.
+
+###El Viejo's older borther: BasicObject###
+# Page 80
+# Fun story not significant
+
+### The Class/Object chicken-or-egg paradox###
+# Page 80
+# Fun and useful
+
+
+### A singleton method by any other name...###
+# Page 83
+# A singleton method defined on class object is commonly referred to as a class method o the class on which it is defined.
+
+### Basic use of constants ###
+# Page 87
+# Example:
+
+class Ticket
+  VENUES = ['Convention Center', 'Fairgrounds', 'Town Hall']
+
+  def initialize(venue, date)
+    if VENUES.include?(venue)
+      @venue = venue
+    else
+      raise ArgumentError, 'Unknown venue #{venue}'
+    end
+    @date
+  end
+end

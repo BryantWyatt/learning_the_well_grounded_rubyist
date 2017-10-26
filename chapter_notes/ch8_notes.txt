@@ -1,0 +1,39 @@
+#############################################################
+### Chapter 8: Strings, symbols, and other scalar objects ###
+#############################################################
+
+## "HERE" DOCUMENTS ##
+
+# Page 223
+
+#A "here" document, or here-doc, is a string usually a muultiline string, that often takes the form of a template or a set of data lines.
+
+# Example:
+# >> text = << EOM
+This is the first line of text.
+This is the second line.
+Now we're done.
+EOM
+
+=> "This is the first line of text.\nThisis the second line.\nNow we're done.\n"
+
+# It is not required for EOM to be the last item on the line as it effective serves as a placeholder
+
+# Example:
+
+>>a = <<EOM.to_i * 10
+5
+EOM
+puts a
+=> 50
+
+# It can also be used in arrays
+
+>>array = [1, 2, 3, << EOM, 4]
+This is the here-doc!
+It becomes array[3]
+EOM
+p array
+=> [1, 2, 3, "This is the here-doc!\nIt becomes array[3].\n, 4]"
+
+

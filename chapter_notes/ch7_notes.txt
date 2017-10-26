@@ -1,0 +1,123 @@
+######################################
+### Chapter 7: Built-in essentials ###
+######################################
+
+## Recurrent syntactic sugar ##
+# Page 193
+
+#The two below statements are the same
+x = 1 + 2
+x = 1. + (2)
+
+## 7.3 Bang (!) methods and "danger" ##
+# Page 197
+
+# The bang has no significance to Ruby internally; bang methods are called and executed just like any other methods.
+# But by convention, the bang labels a method as "dangerous" - specifically, as the dangerous equivalent of a method with the same name but without the bang.
+
+# Dangerous (or "Heads up") can mean whatever the person writing the method wants it to mean.
+# And, with very few very specialized exceptions, every bang method should occur in a pair with a nonbang equivalent.
+
+## 7.3.1 Destructive (receiver-changing effects as danger) ##
+# Calling upcase on a string gives you a new string consisting of the original string in uppercase;
+# but upcase! turns the original string into its own uppercase equivalent, in place.
+
+# Other built-in destructive methods include but no limited to:
+## sort/sort!
+## strip/strip!
+## reverse/reverse!
+
+## 7.3.2 Destructiveness and "danger vary" independently ##
+# Page 199
+
+# Don't use ! except in M/M! method pairs #
+# Don't use the '!' just because you think your method is dangerous in some vague, abstract way.
+# Bang (!) does not mean destructive
+# There are a number of methods that do not have a bang that are inherit destructive for example: String#clear
+
+## 7.4 Built-in and custom to_* conversion methods ##
+# Page 200
+
+# Will not go into great detail but will note some of the common to_* methods
+
+#Examples:
+# to_s, to_sym (symbol), to_a, to_i, to_f
+
+## 7.4.1 String conversation: to_s, Born to be Overridden: Inspect ##
+# Page 291
+
+# Inspect by default returns the object's memory location.
+# In some cases to make inspect more useful, it can be overriden in a custom object to output one of the classes instance variable names
+# Display is rarely used and is default to STDOUT
+
+## 7.4.2 Array conversation with to_a and the * operator ##
+
+# Page 203
+# The star has a kind of bracket-removing or unarraying effect.
+# What starts as an array becomes a list. You can see this if you construct an array from starred array
+
+# Example:
+>> array = [1, 2, 3, 4, 5]
+=> [1, 2, 3, 4, 5]
+>> [*array]
+=> [1, 2, 3, 4, 5]
+
+## 7.4.3 Numerical conversion with to_i and to_f ##
+
+# Page 204
+# Ruby provides two strict versions of the to_* methods, to_i and to_f
+# These can be invoked by calling their methods.
+# Example:
+# Integer()
+# Float()
+# They in strict in the manner that effective if a non-numeric value is provided, it will raise an exception
+
+## 7.4.4 Role-playing to_* methods ##
+
+#This section will include various ways to have a to_* method act as a literal construct
+
+# String Example:
+
+class Person
+  attr_accessor :name
+  def to_str
+    name
+  end
+end
+
+#For the above example, the to_str conversation is also used on arguments to the << (append to string) method.
+
+david = Person.new
+david.name = "David"
+puts "david is named " + david + "."
+
+# Array Example:
+
+class Person
+  attr_accessor :name, :age, :email
+  def to_ary
+    [name, age, email]
+  end
+end
+
+david = Person.new
+david.name = "David"
+david.age = 55
+david.email = "david@wherever"
+array = []
+array.concate(david)
+p array
+
+## 7.6.1 Equality test ##
+
+# Note differences between ==, eql? and equal?
+# == : test to see that the values represented in the stores's literal construct or object are the same
+# eql? : same as eql? but recommend not to override
+# equal? : comparison one object's id against another object's object id
+
+# Page 213
+# <=> is known as the spaceship operator or spaceship method.
+# If left is greater than right it returns a 1
+# If they are equal it returns a 0
+# If right is greater than left returns a -1
+

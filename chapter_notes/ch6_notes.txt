@@ -1,0 +1,36 @@
+###############################
+### Chapter 6: Control flow ###
+###############################
+
+# Note: Most of chapter 6 pertains to conditional logic such as...
+
+# Conditional execution
+## Example:
+## if, elsif, else
+## Bang (!), not
+## unless, else
+## Conditional modifiers (puts "something" if x > 100)
+## case statements (including within an object declaration for handling threeequal)
+
+# Looping
+## Example:
+## loop, while, until, yield
+
+# Iteration
+## Example:
+##do curly brace vs do/end (Page 170), times, creating custom iterators (Page 171-176)
+
+# Exceptions:
+# Common Exceptions:
+## RuntimeError
+## NoMethodError
+## NameError
+## IOError
+## Errno::error
+## TypeError
+## ArgumentError
+
+# Exception Handling:
+## Example:
+## Rescue, raise, raise inside a rescue block of code, ensure (Page 185), custom exceptions
+

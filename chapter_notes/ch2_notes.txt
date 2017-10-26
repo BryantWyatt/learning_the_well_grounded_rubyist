@@ -1,0 +1,97 @@
+############################################
+### Objects, methods and local variables ###
+############################################
+
+###Sending Messages to Objects###
+# Page 37
+
+# Sending messages to objects example:
+# obj.talk
+# The object 'obj' understands or 'responds to', the message 'talk'
+
+# The dot (.) the message-sending operator. The message on the right is sent to the object (or receiver, as it's often called in this role on the left.)
+# The receiver can be, and often is, represented by a variable that stands in for an object. But a receiver can also be a literal object construct - for example, a string in quotation marks.
+# In practice , the message being sent is almost always the name of a method (like talk, the method defined earlier). The object always tries to act on the assumption that the message is the name of a method. If there's no method by that name, error-handling measures are taken.
+
+###String interpolation###
+# Page 42
+
+# One of the most useful programming techniques available in Ruby is 'string interpolation'. The string-interploation operator gives you a way to drop anything into a string a variable, for example, or the return value of a method.
+
+###Innate behavior of an object###
+# Page 44
+
+#Adding these to your Ruby toolbox won't be amiss, because of what they do and because they serve as examples of innate methods
+#object_id
+#respond_to?
+#send(synonym: __send__)
+
+###A close look at method Arguments###
+# Page 48
+
+# Method that accepts multiple arguments
+def obj.multi_arg(*x)
+  puts "I can take zero or more arguments!"
+end
+
+# The *x notation means that when you call the method, you cna supply any number of arguments (or none). In this case, the variable is assigned an array of values corresponding to whatever arguments were sent.
+
+# Method with a default value example:
+def default_args(a, b, c=1)
+  puts "values of variables: ", a,b,c
+end
+
+#Additional Examples
+# Page 53
+
+#Required (R)
+def m(a, b, c)
+
+#Optional (O)
+def m(*a)
+
+#Default-valued (D)
+def m(a=1)
+
+#Required/Optional - R/O
+def m(a, *b)
+
+#Required/Default-valued - R/D
+def m(a, b=1)
+
+#Default-valued/Optional - D/O
+def m(a=1, *b)
+
+#Required/Default-valued/Optional - R/D/O
+def m(a, b=2, *c)
+
+#Required/Default-valued/Optional/Required
+def m(a, b=2, *c, d)
+
+#References
+#Page 56
+#Variables in Ruby do not hold object values. Rather variables contain a reference to a string object.
+
+#Page 57
+#If you have two or more variables containing references to a single object, you can use any of them, on an equal basis, to send messages to the object.
+#References have many-to-one relationship to their objects.
+
+#Duping and Freezing OBjects
+#Page 58
+
+#If you want to protect objects from being changed inside methods to which you send them, you can use the dup method, which duplicates an object:
+
+#Duplicate example
+s = "Original string content!"
+change_string(s.dup)
+puts s
+>>"Original string content!"
+
+#Freeze example
+s = "Original string content!"
+s.freeze
+change_string(s)
+>>RuntimeError: can't modify frozen string
+
+#Values inside of frozen array can be modified
+
