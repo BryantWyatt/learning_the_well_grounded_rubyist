@@ -2,8 +2,7 @@
 ### Objects, methods and local variables ###
 ############################################
 
-###Sending Messages to Objects###
-# Page 37
+### Page 37, Sending Messages to Objects###
 
 # Sending messages to objects example:
 # obj.talk

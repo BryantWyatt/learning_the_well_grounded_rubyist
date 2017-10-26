@@ -1,3 +1,183 @@
 ###################################################
 ### Chapter 9: Collection and container objects ###
 ###################################################
+
+### Arrays and hashes in comparison ###
+# Page 255
+
+# Example hash using values key pairs
+
+>>hash = {"red" => "ruby", "white" => "diamond", "green" => "emerald" }
+>>hash.each.with_index {|(key,value),i|
+  puts "Pair #{i} is: #{key}/#{value}"
+}
+=> Pair 0 is: red/ruby
+Pair 1 is: white/diamond
+Pair 2 is : green/emerald
+
+# Common array constructs:
+# %w() #automatically generates an array using each word provided.  Can use backslash to escape characters
+# %W() #same as '%w()' but with double quotes
+# %i() #automatically generates a symbol array for each word provided.
+# %I() #same as with '$i()' but with double quotes
+
+# Setting and getting more than one array element at a time.
+
+# Example:
+>> a = ["red", "orange", "yellow", "purple", "gray", "indigo", "violet"]
+=> ["red", "orange", "yellow", "purple", "gray", "indigo", "violet"
+irb(main):002:0> a[3,2]
+=> ["purple", "gray"]
+irb(main):003:0> a[3,2] = "green", "blue"
+=> ["green", "blue"]
+irb(main):004:0> a
+=> ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
+
+# Page 262-263
+# Special methods for manipulating arrays (most of these can accept multiple arguments)
+# .unshift, .shift, .push(), <<, .pop, .concat, .replace, .flatten, .reverse, .join, .uniq, .compact, .compact!
+
+## Page 256, 9.2.5 Array querying ##
+# Commonly used array query options (all can accept an argument except .empty?)
+# .size, .empty?, .include?, .count, .first, .last, .sample
+
+## Page 269, 9.3.2 Inserting, retrieving, and removing hash pairs ##
+# Provided below are multiple ways to create a hash
+
+# state_hash["New York"] = "NY"
+# state_hash.[] = ("New York", "NY")
+# state_hash.store("New York", "NY")
+
+# A user can utilize either the .fetch or .value_at command to obtain values from a hash. .value_at is more ideal for obtaining multiple values from a hash
+
+## Page 272, 9.3.4 Combining hashes with other hashes ##
+# A hash can be combined with another hash by utilizing .update or .merge.
+# .update will override one key/value pair in a hash with a different one that's specified
+# .merge will combine two key/value pairs
+
+#.update example:
+
+irb(main):001:0> h1 = {"Smith" => "John", "Jones" => "Jane" }
+=> {"Smith"=>"John", "Jones"=>"Jane"}
+irb(main):002:0> h2 = {"Smith" => "Jim" }
+=> {"Smith"=>"Jim"}
+irb(main):003:0> h1
+=> {"Smith"=>"John", "Jones"=>"Jane"}
+irb(main):004:0> h2
+=> {"Smith"=>"Jim"}
+irb(main):005:0> h1.update(h2)
+=> {"Smith"=>"Jim", "Jones"=>"Jane"}
+irb(main):006:0> puts h1["Smith"]
+Jim
+=> nil
+irb(main):007:0>
+
+#.merge example:
+irb(main):001:0> h1 = {"Smith" => "John", "Jones" => "Jane" }
+=> {"Smith"=>"John", "Jones"=>"Jane"}
+irb(main):002:0> h2 = {"Smith" => "Jim" }
+=> {"Smith"=>"Jim"}
+irb(main):003:0> h3 = h1.merge(h2)
+=> {"Smith"=>"Jim", "Jones"=>"Jane"}
+irb(main):004:0> puts h1["Smith"]
+John
+=> nil
+irb(main):005:0>
+
+## Page 273, Hash transformations ##
+# Common has transformations:
+# .select, .reject, .invert, .clear, .replace
+
+## Page 277, Ranges ##
+# Declaring a new range.  A third argument can be added to indicate that the range is exclusive
+>> r = Range.new(1, 100)
+=> 1..100
+# OR
+>> r = 1..100
+=> 1..100
+
+#Important note regarding dots:
+# 1..10 is an inclusive range or includes boundaries
+# 1...10 is an exclusive range or does not include boundaries
+
+# Example:
+irb(main):001:0> r = 1..10
+=> 1..10
+irb(main):002:0> r.include?(10)
+=> true
+irb(main):003:0> s = 1...10
+=> 1...10
+irb(main):004:0> s.include?(10)
+=> false
+
+# .cover? can be used to determine if the passed argument falls into the declared variables range
+# replacing .include? with .cover? will yield the same result
+
+## Page 281, Sets ##
+
+# sets are not part of the core Ruby library and must be required from the standard library class (ex: require 'set')
+
+# Example of how to create a new set:
+irb(main):001:0> require 'set'
+=> true
+irb(main):002:0> new_england = ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+irb(main):003:0> state_new = Set.new(new_england)
+=> #<Set: {"Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"}>
+
+
+#Diff
+irb(main):001:0> require 'set'
+=> true
+irb(main):002:0> new_england = ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+irb(main):003:0> tri_state = ["New Jersey", "New York", "Connecticut"]
+=> ["New Jersey", "New York", "Connecticut"]
+irb(main):004:0> new_england - tri_state
+=> ["Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+
+#Addition/Union (^ for exclusive union)
+
+irb(main):010:0> new_england
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+irb(main):011:0> tri_state
+=> ["New Jersey", "New York", "Connecticut"]
+irb(main):012:0> new_england | tri_state
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont", "New Jersey", "New York"]
+
+irb(main):009:0> new_england + tri_state
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont", "New Jersey", "New York", "Connecticut"]
+
+#Intersection
+irb(main):005:0> new_england
+=> ["Connecticut", "Maine", "Massachusetts", "New Hampshire", "Rhode Island", "Vermont"]
+irb(main):006:0> tri_state
+=> ["New Jersey", "New York", "Connecticut"]
+irb(main):007:0> new_england & tri_state
+=> ["Connecticut"]
+
+#Merge (it is also possible to merge only the keys as well by using the .keys method in the argument)
+irb(main):001:0> require 'set'
+=> true
+irb(main):002:0> numbers = Set.new([1, 2, 3])
+=> #<Set: {1, 2, 3}>
+irb(main):003:0> letters = Set.new(["a", "b", "c"])
+=> #<Set: {"a", "b", "c"}>
+irb(main):004:0> combination = numbers.merge(letters)
+=> #<Set: {1, 2, 3, "a", "b", "c"}>
+
+## Page 284, 9.5.3 - Subsets and Supersets ##
+# Usage: .subset and .superset
+
+# Example:
+irb(main):001:0> require 'set'
+=> true
+irb(main):002:0> small_states = Set.new(["Connecticut", "Delaware", "Rhode Island"])
+=> #<Set: {"Connecticut", "Delaware", "Rhode Island"}>
+irb(main):003:0> tiny_states = Set.new(["Delaware", "Rhode Island"])
+=> #<Set: {"Delaware", "Rhode Island"}>
+irb(main):004:0> tiny_states.subset?(small_states)
+=> true
+irb(main):005:0> small_states.superset?(small_states)
+=> true
+

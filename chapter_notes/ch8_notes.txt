@@ -3,10 +3,9 @@
 #############################################################
 
 ## "HERE" DOCUMENTS ##
-
 # Page 223
 
-#A "here" document, or here-doc, is a string usually a muultiline string, that often takes the form of a template or a set of data lines.
+# A "here" document, or here-doc, is a string usually a muultiline string, that often takes the form of a template or a set of data lines.
 
 # Example:
 # >> text = << EOM
@@ -36,4 +35,110 @@ EOM
 p array
 => [1, 2, 3, "This is the here-doc!\nIt becomes array[3].\n, 4]"
 
+## 8.1.2 Basic string manipulation ##
+# Page 224
 
+# Examples of Getting and Setting substrings
+
+>> string = "Ruby is a cool language"
+=> "Ruby is a cool language"
+
+#5th character in the string
+>> string[5]
+=> "i"
+
+# Return the 12th character in the string counting from right to left
+>> string[-12]
+=> "o"
+
+# Starting from the 5th character from left to right and counting up to the 10th character (including spaces)
+>> string[5,10]
+=> "is a cool "
+
+# Starting from the 7th character from left to right and counting up to the 14th character (including spaces)
+>> string[7..14]
+=> " a cool "
+
+# Staring from the
+>> string[-12..-3]
+=> "ol languag"
+
+#
+>> string[-12..20]
+=> "ol langua"
+
+#
+>>string[15..-1]
+=> "language."
+
+#
+>>string["very cool lang"]
+=> nil
+
+# Its also possible to obtain a patterns as well (more in Chapter 11)
+>>string[/c[ol ]+/]
+=> "cool l"
+
+# Other keywords that can be used for string manipulations
+# 'string.slice' or 'string.slice!' removes the subset of the string specified (the '!' version modifying the existing string
+
+# Substrings can also be replaced with a bracket argument and the replacement text. It can also work with negative number as well.
+# Example:
+>> string["cool"] = "great"
+=> "great"
+>> string
+=> "Ruby is a great language."
+
+
+## 8.1.3 Querying strings ##
+# Page 228
+
+# Examples of boolean string queries
+# .include?, .start_with?, .end_with?, .empty?
+
+# Examples of content queries
+# .size, .count (can utilize regex), .index, .rindex, .ord (ordinal), .chr (returns character associated to ordinal)
+
+## 8.1.5 String transformation ##
+# .rjust, .ljust, .center, .chomp (or .chop), .clear, .delete
+
+## Symbols as hash keys ##
+# Page 241
+
+# Example:
+
+>> d_hash = { :name => "David", :age => 55 }
+=> {:name => "David", :age => 55}
+>> d_hash[:age]
+=> 55
+>> d_hash[:name]
+=> "David"
+
+# Many of the string manipulation commands can also be used for symbols.
+
+## 8.4.1 Instantiating date/time objects - Creating time objects ##
+
+# Ruby has two different time based objects.  Time (child of Object) and DateTime (a subclass of Date {child of Object})
+# There are minor difference between Time and DateTime one noteable one that Datetime class seconds by using .second and time calls seconds by using .sec
+
+# Common date and time formatters can be found on page 250
+
+## Date/time conversion methods ##
+
+# Example of Date being passed to a block of code
+>>require 'date'
+=> true
+>> d = Date.today
+=> #<Date: 2017-10-26 ((2458053j,0s,0n),+0s,2299161j)>
+>> next_week = d + 7
+=> #<Date: 2017-11-02 ((2458060j,0s,0n),+0s,2299161j)>
+>>d.upto(next_week) {|date| puts "#{date} is a #{date.strftime("%A")}"}
+2017-10-26 is a Thursday
+2017-10-27 is a Friday
+2017-10-28 is a Saturday
+2017-10-29 is a Sunday
+2017-10-30 is a Monday
+2017-10-31 is a Tuesday
+2017-11-01 is a Wednesday
+2017-11-02 is a Thursday
+=> #<Date: 2017-10-26 ((2458053j,0s,0n),+0s,2299161j)>

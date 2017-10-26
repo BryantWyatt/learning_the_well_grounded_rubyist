@@ -1,3 +1,64 @@
 ###################################################################
 ### Chapter 10: Collections central: Enumerable and Enumerators ###
 ###################################################################
+
+## Page 287, 10.1 Gaining enumerability through each ##
+
+# Note: the Enumerable module most be included in order for it to be utilized
+
+# Any class that aspires to be enumerable must have an each method whose job is yield items to a supplied code block, one at a time.
+
+# Array - each yields the first element, then the second  and so forth
+# Hash - it yields the key/value pairs in the form of two-element array
+# Ranges - iterates by first decidign wheather iterating is possible and then pretending to be an array
+
+#Example with an object:
+
+class Rainbow
+  include Enumerable
+  def each
+    yield "red"
+    yield "orange"
+    yield "yellow"
+    yield "green"
+    yield "blue"
+    yield "indigo"
+    yield "violet"
+  end
+end
+
+r = Rainbow.new
+r.each do |color|
+  puts "Next color: #{color}"
+end
+
+#Same example in irb:
+irb(main):001:0> class Rainbow
+irb(main):002:1> include Enumerable
+irb(main):003:1> def each
+irb(main):004:2> yield "red"
+irb(main):005:2> yield "orange"
+irb(main):006:2> yield "yellow"
+irb(main):007:2> yield "green"
+irb(main):008:2> yield "blue"
+irb(main):009:2> yield "indigo"
+irb(main):010:2> yield "violet"
+irb(main):011:2> end
+irb(main):012:1> end
+=> :each
+irb(main):013:0> r = Rainbow.new
+=> #<Rainbow:0x00000003084370>
+irb(main):014:0> r.each do |color|
+irb(main):015:1* puts "Next color: #{color}"
+irb(main):016:1> end
+Next color: red
+Next color: orange
+Next color: yellow
+Next color: green
+Next color: blue
+Next color: indigo
+Next color: violet
+=> nil
+
+
+
