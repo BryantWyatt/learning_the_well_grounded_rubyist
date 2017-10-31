@@ -59,6 +59,3 @@ Next color: blue
 Next color: indigo
 Next color: violet
 => nil
-
-
-

@@ -2,28 +2,24 @@
 ### Organizing objects with classes ###
 #######################################
 
-###Methods###
-#Page 64
+### Page 64, 3.1.1 Instance methods ###
 
-#Methods of this kind, defined inside a class and intended for use by all instnaces of the class are called instance methods
-#Methods that you define for one particular object as in 'def ticket.price' are called singleton method
+# Methods of this kind, defined inside a class and intended for use by all instances of the class are called instance methods
+# Methods that you define for one particular object as in 'def ticket.price' are called singleton method
 
-###Instance Variables###
-#Page 67
+### Page 67, 3.2 Instance variables and object state ###
 
-#Instance variables names always start with a single @ (at sign). This enables you to recognize an instance variable at a glance
-#Instance variables are only visible to the object to which they belong. (Being "visible to an object" has a technical definition having to do with the default object self, which you'll see more about in Chapter 5
+# Instance variables names always start with a single @ (at sign). This enables you to recognize an instance variable at a glance
+# Instance variables are only visible to the object to which they belong. (Being "visible to an object" has a technical definition having to do with the default object self, which you'll see more about in Chapter 5
 
-###The equal sign (=) in method names
-# Page 70
+### Page 70, 3.3 Setter methods: 3.3.1 The equal sign (=) in method names ###
 
-#Setter methods Unleashed
-# Page 72
+### Page 72, 3.3.3 Setter methods Unleashed ###
 
 # Setter methods can be abused see below
 # Ruby check syntaxs but not semantics
 
-#Example
+# Example:
 
 class Silly
   def price=(x)
@@ -33,12 +29,11 @@ end
 s = Silly.new
 s.price = 111.22
 
-###Formatting###
-# Page 71
+### Page 71, Formatting ###
 
-#The percent sign technique allows you to format strings using sprintf-like syntax. Ruby also has 'sprintf' method for formatting.
+# The percent sign technique allows you to format strings using sprintf-like syntax. Ruby also has 'sprintf' method for formatting.
 
-###Summary of attr_* methods###
+### Summary of attr_* methods ###
 
 # attr_reader - Example:
 # attr_reader :venue
@@ -68,21 +63,18 @@ end
 
 # Despite what might be your first impression, Ruby's single inheritance doesn't restrict you: Ruby provides modules, which are bundles of programming functionality similar to classes (expect that they don't have instances), that you can graft on to your class's family tree to provide as many methods for your objects as you need.
 
-###El Viejo's older borther: BasicObject###
-# Page 80
+### Page 80, 3.5.3 El Viejo's older borther: BasicObject ###
 # Fun story not significant
 
-### The Class/Object chicken-or-egg paradox###
-# Page 80
+### Page 82, 3.6.1 The Class/Object chicken-or-egg paradox ###
 # Fun and useful
 
 
-### A singleton method by any other name...###
+### Page 83, 3.6.3 A singleton method by any other name... ###
 # Page 83
 # A singleton method defined on class object is commonly referred to as a class method o the class on which it is defined.
 
-### Basic use of constants ###
-# Page 87
+### Page 87, 3.7.1 Basic use of constants ###
 # Example:
 
 class Ticket
